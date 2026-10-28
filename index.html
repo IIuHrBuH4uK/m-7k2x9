@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#fff0f6">
+  <meta name="description" content="Маленькое приглашение">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="У меня к тебе важный вопрос 💗">
+  <meta property="og:description" content="Открой — это займёт минуту.">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary">
+  <title>Приглашение 💗</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%80%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="hearts" aria-hidden="true"></canvas>
+  <div id="sparkles" aria-hidden="true"></div>
+
+  <main id="app">
+
+    <!-- 1. Заставка -->
+    <section class="screen is-active" id="screen-hello">
+      <div class="card card--hello">
+        <div class="kitty" aria-hidden="true">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Котик с бантиком">
+            <path d="M50 76 L38 26 L88 54 Z" fill="#fff" stroke="#F2A0BE" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M150 76 L162 26 L112 54 Z" fill="#fff" stroke="#F2A0BE" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M56 66 L48 42 L74 56 Z" fill="#FFD1E3"/>
+            <path d="M144 66 L152 42 L126 56 Z" fill="#FFD1E3"/>
+            <ellipse cx="100" cy="114" rx="66" ry="58" fill="#fff" stroke="#F2A0BE" stroke-width="5"/>
+            <g transform="translate(147 40) rotate(12)">
+              <ellipse cx="-13" cy="0" rx="14" ry="9.5" fill="#FF6FA5"/>
+              <ellipse cx="13" cy="0" rx="14" ry="9.5" fill="#FF6FA5"/>
+              <ellipse cx="-13" cy="-1" rx="6" ry="4" fill="#FFA9CB" opacity="0.75"/>
+              <ellipse cx="13" cy="-1" rx="6" ry="4" fill="#FFA9CB" opacity="0.75"/>
+              <circle cx="0" cy="0" r="7" fill="#F4568F"/>
+              <path d="M-3 7 L-8 20 L-1 16 L5 21 L4 8 Z" fill="#F4568F"/>
+            </g>
+            <ellipse cx="78" cy="110" rx="6.5" ry="8.5" fill="#5A3B46"/>
+            <ellipse cx="122" cy="110" rx="6.5" ry="8.5" fill="#5A3B46"/>
+            <circle cx="80" cy="107" r="2" fill="#fff"/>
+            <circle cx="124" cy="107" r="2" fill="#fff"/>
+            <ellipse cx="63" cy="128" rx="11" ry="6.5" fill="#FFC2D8"/>
+            <ellipse cx="137" cy="128" rx="11" ry="6.5" fill="#FFC2D8"/>
+            <ellipse cx="100" cy="125" rx="6.5" ry="5" fill="#FFC15A"/>
+            <path d="M36 104 H64 M36 118 H62 M164 104 H136 M164 118 H138" stroke="#F2A0BE" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="eyebrow">маленькое приглашение</p>
+        <h1>Привет, <span class="name" data-name>Милена</span> 💗</h1>
+        <p class="lead">У меня есть кое-что для тебя.<br>Только сначала нажми сюда.</p>
+        <button class="btn btn--primary" id="startBtn" type="button">Открыть 🎀</button>
+      </div>
+    </section>
+
+    <!-- 2. Сообщения -->
+    <section class="screen" id="screen-messages" aria-labelledby="msgText">
+      <div class="progress" id="progress" aria-hidden="true"></div>
+      <div class="card card--message" id="messageCard" tabindex="0">
+        <div class="sticker" id="msgSticker" aria-hidden="true">🎀</div>
+        <p class="message" id="msgText" aria-live="polite"></p>
+        <button class="btn btn--ghost" id="nextBtn" type="button">Дальше</button>
+        <p class="hint">нажми на карточку, чтобы продолжить</p>
+      </div>
+    </section>
+
+    <!-- 3. Приглашение -->
+    <section class="screen" id="screen-invite">
+      <div class="card card--center">
+        <div class="sticker sticker--big" aria-hidden="true">💌</div>
+        <h2><span data-name>Милена</span>, пойдём со мной на свидание?</h2>
+        <p class="lead">Обещаю вкусную еду, много болтовни и ни одной скучной минуты.</p>
+        <div class="invite-actions" id="inviteActions">
+          <button class="btn btn--yes" id="yesBtn" type="button">Да 💗</button>
+          <button class="btn btn--no" id="noBtn" type="button">Нет</button>
+        </div>
+        <p class="tease" id="tease" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 4. Выбор места -->
+    <section class="screen" id="screen-venues">
+      <div class="screen-head">
+        <h2>Куда пойдём?</h2>
+        <p class="lead">Выбери то, что тебе по душе — остальное я беру на себя.</p>
+      </div>
+      <div class="venue-grid" id="venueGrid"></div>
+    </section>
+
+    <!-- 5. День и время -->
+    <section class="screen" id="screen-when">
+      <div class="screen-head">
+        <h2>Когда тебе удобно?</h2>
+        <p class="lead">Показываю только дни, когда мы оба свободны 💗</p>
+      </div>
+
+      <div class="card card--form">
+        <div class="field">
+          <span class="field-label">День</span>
+          <div class="chips chips--dates" id="dateChips"></div>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Время</span>
+          <div class="chips chips--times" id="timeChips"></div>
+        </div>
+
+        <div class="custom" id="customBlock">
+          <button class="custom-toggle" id="customToggle" type="button" aria-expanded="false" aria-controls="customFields">
+            <span class="custom-toggle__icon" aria-hidden="true">🗓️</span>
+            <span class="custom-toggle__label">
+              <span id="customTitle">Не подходит ни один день?</span>
+              <small id="customSub">Нажми, чтобы выбрать свои дату и время</small>
+            </span>
+            <span class="custom-toggle__chevron" aria-hidden="true">▾</span>
+          </button>
+          <div class="custom-fields" id="customFields" hidden>
+            <label class="input-label">
+              <span>Дата</span>
+              <input type="date" id="customDate">
+            </label>
+            <label class="input-label">
+              <span>Время</span>
+              <input type="time" id="customTime">
+            </label>
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--wide" id="sendBtn" type="button" disabled>Отправить ответ 💌</button>
+        <p class="status" id="sendStatus" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- 6. Финал -->
+    <section class="screen" id="screen-done">
+      <div class="card card--done">
+        <div class="confetti" id="confetti" aria-hidden="true"></div>
+        <div class="sticker sticker--big" aria-hidden="true">🎉</div>
+        <h2>Ура-ура!</h2>
+        <p class="lead">Твой выбор уже у меня. Я напишу тебе очень скоро.</p>
+        <div class="summary" id="summary"></div>
+        <p class="done-note">Готовься: тебя ждёт лучший вечер ❤️</p>
+        <button class="link" id="changeBtn" type="button">изменить выбор</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Подтверждение выбора заведения -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+    <div class="modal__card">
+      <div class="sticker sticker--big" id="confirmEmoji" aria-hidden="true">🍣</div>
+      <h3 id="confirmTitle">Точно туда?</h3>
+      <p class="modal__text" id="confirmText"></p>
+      <div class="modal__actions">
+        <button class="btn btn--primary" id="confirmYes" type="button">Да, туда</button>
+        <button class="btn btn--ghost" id="confirmNo" type="button">Выберу другое</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="schedule.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
