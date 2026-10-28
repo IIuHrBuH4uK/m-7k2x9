@@ -19,7 +19,7 @@
   }
 
   var NAME = cfg.name || 'Милена';
-  document.title = 'Приглашение для ' + NAME + ' 💗';
+  document.title = NAME + ', у меня к тебе вопрос 💗';
   $$('[data-name]').forEach(function (node) { node.textContent = NAME; });
 
   /* ---------------------------------------------------------------- данные */
